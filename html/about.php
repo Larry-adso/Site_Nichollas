@@ -35,19 +35,19 @@
         <div class="navbar-collapse collapsed" id="navbarContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="service.html">Services</a>
+              <a class="nav-link" href="service.php">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="blog.html">Blog</a>
+              <a class="nav-link" href="blog.php">Blog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="contact.php">Contact</a>
             </li>
             <li class="nav-item">
               <a class="btn btn-primary ml-lg-2" href="#">Free Analytics</a>
@@ -64,7 +64,7 @@
           <div class="col-md-6">
             <nav aria-label="Breadcrumb">
               <ul class="breadcrumb justify-content-center py-0 bg-transparent">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active">About</li>
               </ul>
             </nav>
@@ -88,7 +88,7 @@
         </div>
         <div class="col-lg-6 py-3">
           <div class="img-fluid py-3 text-center">
-            <img src="../assets/img/about_frame.png" alt="">
+            <img src="assets/img/about_frame.png" alt="">
           </div>
         </div>
       </div>
