@@ -16,7 +16,7 @@
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<form>
+	<form action="../php/login-register/login-back.php" method="POST" >
 	<div class="svgContainer">
 		<div>
 			<svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
@@ -124,13 +124,13 @@
 	</div>
 	
 	<div class="inputGroup inputGroup1">
-		<label for="loginEmail" id="loginEmailLabel">Email</label>
-		<input type="email" id="loginEmail" maxlength="254" placeholder="tu email aqui.." />
+		<label  for="loginEmail" id="loginEmailLabel">Email</label>
+		<input name="Email" type="email" id="loginEmail" maxlength="254" placeholder="" />
 		<p class="helper helper1"></p>
 	</div>
 	<div class="inputGroup inputGroup2">
 		<label for="loginPassword" id="loginPasswordLabel">Password</label>
-		<input type="password" id="loginPassword" />
+		<input name="Password" type="password" placeholder="*********" id="loginPassword" />
 		<label id="showPasswordToggle" for="showPasswordCheck">Show
 			<input id="showPasswordCheck" type="checkbox"/>
 			<div class="indicator"></div>
