@@ -25,7 +25,7 @@
               <a class="nav-link" href="contact.html">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-primary ml-lg-2" href="#">Login</a>
+              <a class="btn btn-primary ml-lg-2" href="html/login.php">Login</a>
             </li>
           </ul>
         </div>
