@@ -26,7 +26,11 @@
   <!-- Back to top button -->
   <div class="back-to-top"></div>
 
-  <?php require("html/header.php"); ?>
+  <?php
+  require("config/db.php");
+  require("html/header.php");
+  require("php/crud/read.php");
+  ?>
   <!-- mostrar las modelos  -->
   <div class="page-section">
     <div class="container">
@@ -35,11 +39,21 @@
         <div class="col-lg-4">
           <div class="card-service wow fadeInUp">
             <div class="header">
-              <img src="assets/img/services/service-1.svg" alt="">
-            </div>
-            <div class="body">
-              <h5 class="text-secondary">Nombre de la modelo</h5>
-              <p>Breve descripcion</p>
+              <?php
+              if (!empty($imagen_perfil)) {
+                // Convertir los datos binarios de la imagen a base64
+                $imagen_base64 = base64_encode($imagen_perfil);
+                echo '<img style="width: 100%;" src="data:image/jpeg;base64,' . $imagen_base64 . '" alt="Imagen de Perfil" />';
+              } else {
+                // Mostrar una imagen por defecto si no hay imagen en la base de datos
+                echo '<img src="default.png" alt="Imagen por defecto" />';
+              }
+              ?>
+            </div>    
+
+            <div  class="body">
+              <h5 class="text-secondary"><?php echo " $user_name<br>"; ?> </h5>
+              <p><?php echo " $description<br>"; ?></p>
               <a href="service.html" class="btn btn-primary">Mirar contenido de la modelo</a>
             </div>
           </div>
@@ -73,9 +87,9 @@
     </div>
 </div>
    .page-section -->
-  
-   <!-- ----------------------------------- -->
- <!-- aqui podemos meter alguno otros servicios o promociones -->
+
+  <!-- ----------------------------------- -->
+  <!-- aqui podemos meter alguno otros servicios o promociones -->
   <div class="page-section bg-light">
     <div class="container">
       <div class="text-center wow fadeInUp">
@@ -99,10 +113,10 @@
 
     </div> <!-- .container -->
   </div> <!-- .page-section -->
-<!-- FIN de aqui podemos meter alguno otros servicios o promociones -->
- <!-- ----------------------------------- -->
-<!-- esta section se puede usar para algo -->
-<!--
+  <!-- FIN de aqui podemos meter alguno otros servicios o promociones -->
+  <!-- ----------------------------------- -->
+  <!-- esta section se puede usar para algo -->
+  <!--
   <div class="page-section banner-seo-check">
     <div class="wrap bg-image" style="background-image: url(assets/img/bg_pattern.svg);">
       <div class="container text-center">
@@ -119,8 +133,8 @@
     </div>
   </div> 
  -->
-<!-- fin de esta section se puede usar para algo -->
- <!-- ----------------------------------- -->
+  <!-- fin de esta section se puede usar para algo -->
+  <!-- ----------------------------------- -->
 
   <div class="page-section">
     <div class="container">
@@ -293,7 +307,7 @@
     </div>
   </div>
 
- <?php require("html/footer.php");  ?> 
+  <?php require("html/footer.php");  ?>
 
 
   <script src="assets/js/jquery-3.5.1.min.js"></script>
