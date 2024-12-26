@@ -8,7 +8,20 @@ include("../php/crud/update.php");
     <meta charset="UTF-8">
     <title>Actualizar Usuario</title>
 </head>
-<body>
+<body> 
+
+<script>
+        // Función personalizada para mostrar alertas
+        function showCustomAlert(message, icon = "warning") {
+            Swal.fire({
+                title: "¡Atención!",
+                text: message,
+                icon: icon, // Opciones: success, error, warning, info
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#007bff",
+            });
+        }
+    </script>
     <h2>Actualizar Usuario</h2>
     <form method="POST" action="../php/crud/update.php?htmlspecialchars($id_usuario) ?>" enctype="multipart/form-data">
         <label for="nombre">Nombre:</label><br>

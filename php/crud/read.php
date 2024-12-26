@@ -1,6 +1,8 @@
 <?php
 //require("../../config/db.php"); // Incluye el archivo con la conexión a la base de datos
-
+//s3 objet storage 
+//ofuscar imagenes
+// dibujar la imagen en un canvas html
 // ID del usuario que quieres buscar
 $id_usuario = 6; // Puedes cambiar este ID o recibirlo como parámetro GET/POST
 

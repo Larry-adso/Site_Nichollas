@@ -1,7 +1,7 @@
 <?php
 //require("../../config/db.php"); // Incluye la conexión a la base de datos
 
-// Variable para almacenar el ID del usuario (puede venir por GET o POST)
+// Variable para almacenar el ID del usuario (puede venir por GET)
 $id_usuario = $_GET['id_usuario'] ?? null;
 
 // Variables para almacenar la información actual
@@ -14,7 +14,7 @@ if ($id_usuario) {
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
         $stmt->execute();
-        
+
         // Obtener los datos del usuario
         if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $nombre = $row['nombre'];
@@ -23,11 +23,12 @@ if ($id_usuario) {
             $telefono = $row['telefono'];
             $imagen_perfil = $row['imagen_perfil'];
         } else {
-            echo "Usuario no encontrado.";
+            echo "<script>showCustomAlert('Usuario no encontrado.', 'error');</script>";
             exit;
         }
     } catch (PDOException $e) {
-        die("Error al recuperar los datos: " . $e->getMessage());
+        echo "<script>showCustomAlert('Error al recuperar los datos: " . $e->getMessage() . "', 'error');</script>";
+        exit;
     }
 }
 
@@ -75,11 +76,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $stmt->execute();
-        echo "El usuario fue actualizado correctamente.";
-        header("Location: update.php?id_usuario=$id_usuario"); // Refrescar la página
+        echo "<script>showCustomAlert('El usuario fue actualizado correctamente.', 'success');</script>";
+        header("Refresh:2; url=update.php?id_usuario=$id_usuario"); // Refrescar la página después de 2 segundos
         exit;
     } catch (PDOException $e) {
-        die("Error al actualizar el registro: " . $e->getMessage());
+        echo "<script>showCustomAlert('Error al actualizar el registro: " . $e->getMessage() . "', 'error');</script>";
     }
 }
 ?>

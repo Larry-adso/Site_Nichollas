@@ -4,6 +4,7 @@ require_once '../../config/db.php';
 
 // Incluir Bootstrap CSS
 echo '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">';
+echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'; // SweetAlert
 
 $alert = "";
 
@@ -17,9 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Validar campos obligatorios
     if (!$nombre || !$telefono || !$user_name || !$email || !$password) {
-        $alert = '<div class="alert alert-danger" role="alert">
-                    Todos los campos son obligatorios y deben ser válidos. Redirigiendo...
-                  </div>';
+        $alert = "Todos los campos son obligatorios y deben ser válidos.";
+        $icon = "warning";
         $redirect = "../../html/register.php";
     } else {
         try {
@@ -28,9 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bindParam(':user_name', $user_name, PDO::PARAM_STR);
             $stmt->execute();
             if ($stmt->fetchColumn() > 0) {
-                $alert = '<div class="alert alert-warning" role="alert">
-                            Oh no, el nombre de usuario ya está en uso. Redirigiendo...
-                          </div>';
+                $alert = "Oh no, el nombre de usuario ya está en uso.";
+                $icon = "warning";
                 $redirect = "../../html/register.php";
             } else {
                 // Validar si el email ya existe
@@ -38,9 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                 $stmt->execute();
                 if ($stmt->fetchColumn() > 0) {
-                    $alert = '<div class="alert alert-warning" role="alert">
-                                El correo electrónico ya está registrado. Redirigiendo...
-                              </div>';
+                    $alert = "El correo electrónico ya está registrado.";
+                    $icon = "warning";
                     $redirect = "../../html/register.php";
                 } else {
                     // Validar si el teléfono ya existe
@@ -48,9 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $stmt->bindParam(':telefono', $telefono, PDO::PARAM_STR);
                     $stmt->execute();
                     if ($stmt->fetchColumn() > 0) {
-                        $alert = '<div class="alert alert-warning" role="alert">
-                                    El número de teléfono ya está registrado o no es válido. Redirigiendo...
-                                  </div>';
+                        $alert = "El número de teléfono ya está registrado o no es válido.";
+                        $icon = "warning";
                         $redirect = "../../html/register.php";
                     } else {
                         // Preparar la consulta SQL para la inserción
@@ -65,28 +62,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
 
                         if ($stmt->execute()) {
-                            $alert = '<div class="alert alert-success" role="alert">
-                                        Registro exitoso. Redirigiendo a la página principal...
-                                      </div>';
+                            $alert = "Registro exitoso. Redirigiendo a la página principal...";
+                            $icon = "success";
                             $redirect = "../../index.php";
                         } else {
-                            $alert = '<div class="alert alert-danger" role="alert">
-                                        Ocurrió un error al registrar los datos. Redirigiendo...
-                                      </div>';
+                            $alert = "Ocurrió un error al registrar los datos.";
+                            $icon = "error";
                             $redirect = "../../html/register.php";
                         }
                     }
                 }
             }
         } catch (PDOException $e) {
-            $alert = '<div class="alert alert-danger" role="alert">
-                        Error: ' . $e->getMessage() . '. Redirigiendo...
-                      </div>';
+            $alert = "Error: " . $e->getMessage();
+            $icon = "error";
             $redirect = "../../html/register.php";
         }
     }
+
+    // Generar alerta de SweetAlert
+    echo "<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+            title: '¡Atención!',
+            text: '$alert',
+            icon: '$icon',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#007bff',
+            target: 'body' // Cambiar si tienes un contenedor específico
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '$redirect';
+            }
+        });
+    });
+</script>";
+
 }
-
-include ("../../html/alerts.php");
 ?>
-

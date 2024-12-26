@@ -49,9 +49,9 @@
                 echo '<img src="default.png" alt="Imagen por defecto" />';
               }
               ?>
-            </div>    
+            </div>
 
-            <div  class="body">
+            <div class="body">
               <h5 class="text-secondary"><?php echo " $user_name<br>"; ?> </h5>
               <p><?php echo " $description<br>"; ?></p>
               <a href="service.html" class="btn btn-primary">Mirar contenido de la modelo</a>
